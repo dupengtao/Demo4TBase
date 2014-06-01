@@ -2,25 +2,30 @@ package com.dpt.demo4tbase;
 
 import java.util.List;
 
+import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
+import android.text.format.DateUtils;
+import android.widget.ListView;
+import android.widget.Toast;
+
 import com.dpt.demo4tbase.adapter.DemoAdapter;
 import com.dpt.demo4tbase.engine.DemoEngine;
 import com.dpt.demo4tbase.engine.interfaces.AbDemoResultCallBack;
 import com.dpt.demo4tbase.engine.to.EntryTo;
-import com.dpt.tbase.app.base.engine.AbUiBaseResultCallBack;
-
-import android.os.Bundle;
-import android.widget.ListView;
-import android.widget.Toast;
-import android.app.Activity;
-import android.content.Context;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 public class DemoActivity extends Activity {
 
-	private ListView mLv;
+	// private ListView mLv;
 	private DemoAdapter mAdapter;
 	private Context mContext;
 	private DemoEngine mDemoEngine;
 	private AbDemoResultCallBack<List<EntryTo>> mListCb;
+	private PullToRefreshListView mRefreshListView;
+	private int pageIndex=1, pageSize=20;
+	protected boolean mIsPullDown=true;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +37,42 @@ public class DemoActivity extends Activity {
 	}
 
 	private void initView() {
-		mLv = (ListView) findViewById(R.id.lvDemo);
+		//mLv = (ListView) findViewById(R.id.lvDemo);
+		mRefreshListView= (PullToRefreshListView) findViewById(R.id.pull_refresh_list);
 	}
 
 	private void setEvents() {
 		initAdapter();
 		initCallBack();
+		mRefreshListView.setAdapter(mAdapter);
+		mRefreshListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
+
+			@Override
+			public void onPullDownToRefresh(
+					PullToRefreshBase<ListView> refreshView) {
+				mIsPullDown=true;
+				updateLabel(refreshView);
+				pullDown();
+			}
+
+			@Override
+			public void onPullUpToRefresh(
+					PullToRefreshBase<ListView> refreshView) {
+				mIsPullDown=false;
+				updateLabel(refreshView);
+				pullUp();
+			}
+			
+			private void updateLabel(PullToRefreshBase<ListView> refreshView) {
+				String label = DateUtils.formatDateTime(mContext,
+                      System.currentTimeMillis(), DateUtils.FORMAT_SHOW_TIME
+                              | DateUtils.FORMAT_SHOW_DATE
+                              | DateUtils.FORMAT_ABBREV_ALL);
+              // Update the LastUpdatedLabel
+              refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+			}
+
+		});
 	}
 
 	private void initCallBack() {
@@ -51,24 +86,24 @@ public class DemoActivity extends Activity {
 							"datas==null and statusCode=" + statusCode,
 							Toast.LENGTH_SHORT).show();
 				} else {
-					datas2ui(datas);
+					datas2ui(datas,mIsPullDown);
 				}
 
 			}
 		};
 	}
 
-	protected void datas2ui(List<EntryTo> datas) {
+	protected void datas2ui(List<EntryTo> datas,boolean isPullDown) {
 		if (datas.size() == 0) {
 			Toast.makeText(mContext, "没有新闻了", Toast.LENGTH_SHORT).show();
 		} else {
-			mAdapter.getList().addAll(datas);
-			if (mLv.getAdapter() == null) {
-				mLv.setAdapter(mAdapter);
-			} else {
-				mAdapter.notifyDataSetChanged();
+			if (isPullDown) {
+				mAdapter.getList().clear();
 			}
+			mAdapter.getList().addAll(datas);
+			mAdapter.notifyDataSetChanged();
 		}
+		loadFinished();
 	}
 
 	private void initAdapter() {
@@ -78,10 +113,22 @@ public class DemoActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		loadNews(1, 20);
+		pullDown();
 	}
-
+	
+	private void pullUp(){
+		loadNews(++pageIndex, pageSize);
+	}
+	private void pullDown(){
+		pageIndex=1;
+		loadNews(pageIndex, pageSize);
+	}
+	
 	private void loadNews(int pageIndex, int pageSize) {
 		mDemoEngine.loadRecentNews(pageIndex, pageSize, mListCb);
 	}
+    
+    private void loadFinished() {
+    	mRefreshListView.onRefreshComplete();
+    }
 }
