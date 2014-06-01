@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.dpt.demo4tbase.adapter.DemoAdapter;
 import com.dpt.demo4tbase.engine.DemoEngine;
+import com.dpt.demo4tbase.engine.interfaces.AbDemoResultCallBack;
 import com.dpt.demo4tbase.engine.to.EntryTo;
 import com.dpt.tbase.app.base.engine.AbUiBaseResultCallBack;
 
@@ -19,7 +20,7 @@ public class DemoActivity extends Activity {
 	private DemoAdapter mAdapter;
 	private Context mContext;
 	private DemoEngine mDemoEngine;
-	private AbUiBaseResultCallBack<List<EntryTo>> mListCb;
+	private AbDemoResultCallBack<List<EntryTo>> mListCb;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,7 @@ public class DemoActivity extends Activity {
 
 	private void initCallBack() {
 		mDemoEngine = new DemoEngine(mContext);
-		mListCb = new AbUiBaseResultCallBack<List<EntryTo>>() {
+		mListCb = new AbDemoResultCallBack<List<EntryTo>>(mContext) {
 			@Override
 			public void onSuccessResult(List<EntryTo> datas, int statusCode,
 					String[] otherMsg) {
