@@ -6,5 +6,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="demo_list">list</string>
     <string name="demo_image">image</string>
+    <string name="demo_image_1">网络加载图片方式一：</string>
+    <string name="demo_image_2">网络加载图片方式二：</string>
+    <string name="demo_clear">clear cache</string>
 
 </resources>

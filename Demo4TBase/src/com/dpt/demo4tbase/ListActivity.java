@@ -32,13 +32,12 @@ public class ListActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mContext = this;
-		setContentView(R.layout.activity_demo);
+		setContentView(R.layout.activity_list);
 		initView();
 		setEvents();
 	}
 
 	private void initView() {
-		//mLv = (ListView) findViewById(R.id.lvDemo);
 		mRefreshListView= (PullToRefreshListView) findViewById(R.id.pull_refresh_list);
 	}
 

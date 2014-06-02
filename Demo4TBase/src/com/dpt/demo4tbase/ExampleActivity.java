@@ -34,6 +34,8 @@ public class ExampleActivity extends Activity{
 			
 			@Override
 			public void onClick(View v) {
+				Intent intent = new Intent(mContext, ImageActivity.class);
+				startActivity(intent);
 			}
 		});
 	}

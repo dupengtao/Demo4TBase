@@ -18,5 +18,11 @@ public class UriHelper {
         return builder.toString();
     }
 
+    public static String getImageUrl() {
+        return "http://ipc.chotee.com/uploads/ishoulu/pic/2013/03/66151409197ba74f337521654.jpg";
+    }
+    public static String getImageUrl2() {
+    	return "http://ipc.chotee.com/uploads/ishoulu/pic/2013/05/1385193aa98c431a807856676.jpg";
+    }
 	
 }

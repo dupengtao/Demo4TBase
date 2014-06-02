@@ -30,6 +30,9 @@
         <activity
             android:name="com.dpt.demo4tbase.ListActivity">
             </activity>
+            <activity
+            android:name="com.dpt.demo4tbase.ImageActivity">
+            </activity>
     </application>
 
 </manifest>
