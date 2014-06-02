@@ -1,11 +1,5 @@
 package com.dpt.demo4tbase;
 
-import com.android.volley.toolbox.NetworkImageView;
-import com.dpt.demo4tbase.net.UriHelper;
-import com.dpt.tbase.app.application.TBaseApplication;
-import com.dpt.tbase.app.net.TBaseNetClent2;
-
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +8,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-public class ImageActivity extends Activity{
+import com.android.volley.toolbox.NetworkImageView;
+import com.dpt.demo4tbase.net.UriHelper;
+import com.dpt.tbase.app.application.TBaseApplication;
+import com.dpt.tbase.app.net.TBaseNetClent2;
+
+public class ImageActivity extends DemoBaseActivity{
 	
 	private NetworkImageView mNiv;
 	private ImageView mIv;

@@ -2,7 +2,6 @@ package com.dpt.demo4tbase;
 
 import java.util.List;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.format.DateUtils;
@@ -13,11 +12,10 @@ import com.dpt.demo4tbase.adapter.DemoAdapter;
 import com.dpt.demo4tbase.engine.DemoEngine;
 import com.dpt.demo4tbase.engine.interfaces.AbDemoResultCallBack;
 import com.dpt.demo4tbase.engine.to.EntryTo;
-import com.dpt.tbase.app.net.TBaseNetClent2;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
-public class ListActivity extends Activity {
+public class ListActivity extends DemoBaseActivity {
 
 	// private ListView mLv;
 	private DemoAdapter mAdapter;
@@ -130,11 +128,5 @@ public class ListActivity extends Activity {
     
     private void loadFinished() {
     	mRefreshListView.onRefreshComplete();
-    }
-    
-    @Override
-    protected void onStop() {
-    	super.onStop();
-    	TBaseNetClent2.cancelAllRequests();
     }
 }
