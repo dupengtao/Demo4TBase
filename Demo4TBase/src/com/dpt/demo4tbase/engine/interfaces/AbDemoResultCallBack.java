@@ -6,16 +6,20 @@ import android.widget.Toast;
 
 import com.dpt.tbase.app.base.engine.IUiBaseResultCallBack;
 
-public abstract class AbDemoResultCallBack<T> implements IUiBaseResultCallBack<T>{
-	
+public abstract class AbDemoResultCallBack<T> implements
+		IUiBaseResultCallBack<T> {
+
 	private ProgressDialog pDialog;
 	private Context mContent;
+	private boolean isFirst = true;
 
 	public AbDemoResultCallBack(Context content) {
 		super();
-		mContent=content;
-		pDialog = new ProgressDialog(content);
-		pDialog.setMessage("Loading...");
+		mContent = content;
+		if (isFirst) {
+			pDialog = new ProgressDialog(content);
+			pDialog.setMessage("Loading...");
+		}
 
 	}
 
@@ -25,12 +29,17 @@ public abstract class AbDemoResultCallBack<T> implements IUiBaseResultCallBack<T
 
 	@Override
 	public void onStart() {
-		pDialog.show();  
+		if (isFirst) {
+			pDialog.show();
+		}
 	}
 
 	@Override
 	public void onFinish() {
-		pDialog.dismiss();
+		if (isFirst) {
+			pDialog.dismiss();
+			isFirst = false;
+		}
 	}
 
 	@Override

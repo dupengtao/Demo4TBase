@@ -6,6 +6,8 @@
     <dimen name="demo_dimen_6">6dp</dimen>
     <dimen name="demo_dimen_1px">1px</dimen>
     <dimen name="demo_dimen_5">5dp</dimen>
+    <dimen name="demo_dimen_48">48dp</dimen>
+    <dimen name="demo_dimen_10">10dp</dimen>
     <dimen name="demo_font_18">18sp</dimen>
 
 </resources>

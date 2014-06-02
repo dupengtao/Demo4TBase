@@ -4,5 +4,7 @@
     <string name="app_name">Demo4TBase</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="demo_list">list</string>
+    <string name="demo_image">image</string>
 
 </resources>

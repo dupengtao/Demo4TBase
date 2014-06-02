@@ -13,10 +13,11 @@ import com.dpt.demo4tbase.adapter.DemoAdapter;
 import com.dpt.demo4tbase.engine.DemoEngine;
 import com.dpt.demo4tbase.engine.interfaces.AbDemoResultCallBack;
 import com.dpt.demo4tbase.engine.to.EntryTo;
+import com.dpt.tbase.app.net.TBaseNetClent2;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
-public class DemoActivity extends Activity {
+public class ListActivity extends Activity {
 
 	// private ListView mLv;
 	private DemoAdapter mAdapter;
@@ -130,5 +131,11 @@ public class DemoActivity extends Activity {
     
     private void loadFinished() {
     	mRefreshListView.onRefreshComplete();
+    }
+    
+    @Override
+    protected void onStop() {
+    	super.onStop();
+    	TBaseNetClent2.cancelAllRequests();
     }
 }
