@@ -27,12 +27,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.dpt.demo4tbase.ListActivity">
-            </activity>
-            <activity
-            android:name="com.dpt.demo4tbase.ImageActivity">
-            </activity>
+        <activity android:name="com.dpt.demo4tbase.ListActivity" >
+        </activity>
+        <activity android:name="com.dpt.demo4tbase.ImageActivity" >
+        </activity>
+        <activity android:name="com.dpt.demo4tbase.ImagesActivity" >
+        </activity>
     </application>
 
 </manifest>

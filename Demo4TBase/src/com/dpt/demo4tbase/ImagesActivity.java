@@ -8,18 +8,18 @@ import android.text.format.DateUtils;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.dpt.demo4tbase.adapter.DemoAdapter;
+import com.dpt.demo4tbase.adapter.ImageAdapter;
 import com.dpt.demo4tbase.engine.DemoEngine;
 import com.dpt.demo4tbase.engine.interfaces.AbDemoResultCallBack;
 import com.dpt.demo4tbase.engine.to.EntryTo;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
-public class ListActivity extends DemoBaseActivity {
+public class ImagesActivity extends DemoBaseActivity {
 
 	
-	private static final String TAG=ListActivity.class.getSimpleName();
-	private DemoAdapter mAdapter;
+	private static final String TAG=ImagesActivity.class.getSimpleName();
+	private ImageAdapter mAdapter;
 	private Context mContext;
 	private DemoEngine mDemoEngine;
 	private AbDemoResultCallBack<List<EntryTo>> mListCb;
@@ -111,7 +111,7 @@ public class ListActivity extends DemoBaseActivity {
 	}
 
 	private void initAdapter() {
-		mAdapter = new DemoAdapter(mContext);
+		mAdapter = new ImageAdapter(mContext);
 	}
 
 	@Override
@@ -131,6 +131,10 @@ public class ListActivity extends DemoBaseActivity {
 	private void loadNews(int pageIndex, int pageSize) {
 		mDemoEngine.loadRecentNews(pageIndex, pageSize, mListCb);
 	}
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+	}
     
     private void loadFinished() {
     	mRefreshListView.onRefreshComplete();
@@ -139,5 +143,6 @@ public class ListActivity extends DemoBaseActivity {
     @Override
     protected void onStop() {
     	super.onStop();
+    	//TBaseNetClent2.cancelSingleRequest(TAG);
     }
 }

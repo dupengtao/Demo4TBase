@@ -18,5 +18,11 @@
         android:layout_height="@dimen/demo_dimen_48"
         android:gravity="center"
         android:text="@string/demo_image" />
+    <Button
+        android:id="@+id/btnListImages"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/demo_dimen_48"
+        android:gravity="center"
+        android:text="@string/demo_list_image" />
 
 </LinearLayout>

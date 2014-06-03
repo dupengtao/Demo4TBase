@@ -11,6 +11,7 @@ public class ExampleActivity extends DemoBaseActivity{
 	private Context mContext;
 	private Button mBtnList;
 	private Button mBtnImage;
+	private Button mBtnListImages;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +38,19 @@ public class ExampleActivity extends DemoBaseActivity{
 				startActivity(intent);
 			}
 		});
+		mBtnListImages.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(mContext, ImagesActivity.class);
+				startActivity(intent);
+			}
+		});
 	}
 
 	private void initView() {
 		mBtnList=(Button)findViewById(R.id.btnList);
 		mBtnImage=(Button)findViewById(R.id.btnImage);
+		mBtnListImages=(Button)findViewById(R.id.btnListImages);
 	}
 }

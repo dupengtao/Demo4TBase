@@ -34,9 +34,10 @@ public class ImageActivity extends DemoBaseActivity{
 			
 			@Override
 			public void onClick(View v) {
-				//图片缓存有2级，一级利用lru算法存储在 内存中，一级存储在data/data/cache 中，这里清理的是中的缓存
+				//图片缓存有2级，一级利用lru算法存储在 内存中，一级存储在data/data/cache 中，这里清理的是data/data/cache 中缓存
 				long cacheSize = TBaseNetClent2.getCacheSize(mContext);
 				Toast.makeText(mContext, "缓存大小"+cacheSize, Toast.LENGTH_SHORT).show();
+				//TBaseNetClent2.cacheClear();
 				TBaseNetClent2.cacheClear();
 			}
 		});
@@ -61,5 +62,11 @@ public class ImageActivity extends DemoBaseActivity{
 
 	private void loadNiv() {
 		mNiv.setImageUrl(UriHelper.getImageUrl2(), TBaseApplication.getInstance().getImageLoader());
+	}
+	
+	@Override
+	protected void onStop() {
+		super.onStop();
+		TBaseApplication.getInstance().getRequestQueue().cancelAll(this);
 	}
 }
