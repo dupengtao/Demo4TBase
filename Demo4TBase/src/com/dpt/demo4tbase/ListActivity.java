@@ -88,6 +88,11 @@ public class ListActivity extends DemoBaseActivity {
 				}
 
 			}
+			@Override
+			public void noNetworkEnvironment() {
+				super.noNetworkEnvironment();
+				loadFinished();
+			}
 		};
 	}
 
