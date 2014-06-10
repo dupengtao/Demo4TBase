@@ -2,7 +2,7 @@ package com.dpt.demo4tbase.app;
 
 import com.dpt.tbase.app.application.TBaseApplication;
 /**
- * text git
+ * text git2
  * @author dupengtao
  *
  */
