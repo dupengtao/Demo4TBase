@@ -1,2 +1,8 @@
 /bin
 /gen
+# Android:
+.classpath
+.project
+project.properties
+*.egg-info
+/.settings
